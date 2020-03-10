@@ -1,0 +1,6 @@
+AuthType Basic
+AuthName "Password Required"
+AuthUserFile "~/httpauth/password.file"
+AuthGroupFile "~/httpauth/group.file"
+Require group admins
+
