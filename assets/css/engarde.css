@@ -1,0 +1,261 @@
+@CHARSET "UTF-8";
+
+/* ANPV-LOG 30/03/2015 Feuille de style 
+ * PageBg:white
+ * Cell:Bg Dark Blue
+ * Effects:On
+ * Font Color:black
+ * Cell font color:white
+ * Quarter: no
+ * This is a simple style sheet for the Engarde HTML overall ranking output.
+ */
+
+/*
+ * This is a general list table that can be used for all the output
+ * apart from the poules and the tableaux
+ * 2 pixel line border and 1 pixel line separation
+ */
+
+table.liste {
+  font-size:100%;
+  color: #000;
+  background-color: #fff;
+  border-collapse: collapse;
+  border: 2px solid #000;
+}
+
+/* This is the row for the header and footer */
+
+table.liste th {
+  color: #4682b4;
+  background-color: #ffefd5;
+  border: 1px solid #2f4f4f;
+  padding: 2px 0.5em;
+}
+
+/* Border style for the table data cells */
+table.liste td {
+  border: 1px solid #2f4f4f;
+  padding: 2px 0.5em;
+}
+
+/*
+ * This is a general list table that can be used for all the output
+ * apart from the poules and the tableaux
+ * 1 pixel line border and 0 pixel line separation
+ */
+
+table.liste0 {
+  font-size: 100%;
+  color: #000;
+  background-color: #fff;
+  border-collapse: collapse;
+  border: 1px solid #000;
+}
+
+/* This is the row for the header and footer */
+
+table.liste0 th {
+  color: #4682b4;
+  background-color: #ffefd5;
+  border: 1px solid #2f4f4f;
+  padding: 2px 0.5em;
+}
+
+/* Border style for the table data cells */
+table.liste0 td {
+  border: 0 px solid #2f4f4f;
+  padding: 2px 0.5em;
+}
+
+.pair {
+  background-color: #eee;
+  color: #000;
+}
+
+.impair {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Alignment for numbers */
+.nombre {
+  text-align: right;
+}
+
+.centre {
+  text-align: center;
+}
+
+/*
+ * Styles for poule table output
+ */
+
+table.poule {
+  font-size: 95%;
+  color: #000;
+  background-color: #fff;
+  border-collapse: collapse;
+  border: 2px solid #000;
+}
+
+table.poule th {
+background: #1e9a7f; /* Old browsers */
+background: -moz-linear-gradient(top,  #1e5799 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1e5799), color-stop(50%,#2989d8), color-stop(51%,#207cca), color-stop(100%,#7db9e8)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */	
+text-shadow: 1px 1px 1px black;
+border: solid #000 1px;
+color:white;
+}
+
+/* Border style for the table data cells */
+
+table.poule td {
+  border: 1px solid #2f4f4f;
+  padding: 2px 0.5em;
+}
+
+/* The diagonal box in the poule table */
+
+.inutilise {
+  background-color: #bbb;
+  color: #000;
+}
+
+/*
+ * Tableau styles
+ */
+
+table.tableau {
+  font-size: 90%;
+  color: #000;
+  background-color: #fff;
+  border: 0;
+  border-collapse: collapse;
+  padding: 0;
+  margin: 0;
+  empty-cells: show;
+}
+
+/* Styles to build the diagram */
+
+.ligne {
+  border-right: solid #000 1px;
+  margin: 0;
+}
+
+.boite {
+  border: solid #000 1px;
+  margin: 0;
+}
+
+td.tableTitle { font-weight: bold; color: black;}
+
+td.fencer { text-align: center; }
+td.referee { text-align: center; background-color: silver; color:white;}
+td.nation { text-align: center; color: black; }
+
+td.placeNumber { text-align: right; color: black;}
+td.timePiste { text-align: center; font-style: italic; color: black;}
+td.score { text-align: center; color: black;}
+
+td.quarter0 { 
+background: #7220a4; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #7220a4 0%, #661b8f 50%, #4d1674 51%, #4e1775 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#7220a4), color-stop(50%,#661b8f), color-stop(51%,#4d1674), color-stop(100%,#4e1775)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(-45deg,  #7220a4 0%,#661b8f 50%,#4d1674 51%,#4e1775 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(-45deg,  #7220a4 0%,#661b8f 50%,#4d1674 51%,#4e1775 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(-45deg,  #7220a4 0%,#661b8f 50%,#4d1674 51%,#4e1775 100%); /* IE10+ */
+background: linear-gradient(135deg,  #7220a4 0%,#661b8f 50%,#4d1674 51%,#4e1775 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7220a4', endColorstr='#4e1775',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+text-shadow: 1px 1px 1px black;
+border: solid #000 1px;
+color:white;
+}
+td.quarter1 {
+background: #1e9a7f; /* Old browsers */
+background: -moz-linear-gradient(top,  #1e5799 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1e5799), color-stop(50%,#2989d8), color-stop(51%,#207cca), color-stop(100%,#7db9e8)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */	
+text-shadow: 1px 1px 1px black;
+border: solid #000 1px;
+color:white;
+}
+td.quarter2 { 
+background: #f1e767; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #f1e767 0%, #feb645 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#f1e767), color-stop(100%,#feb645)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(-45deg,  #f1e767 0%,#feb645 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(-45deg,  #f1e767 0%,#feb645 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(-45deg,  #f1e767 0%,#feb645 100%); /* IE10+ */
+background: linear-gradient(135deg,  #f1e767 0%,#feb645 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1e767', endColorstr='#feb645',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+border: solid #000 1px;
+color:#4b2918;
+}
+
+td.quarter3 { 
+background: #3aa420; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #3aa420 0%, #2f8f1b 50%, #2c7416 51%, #2d7517 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#3aa420), color-stop(50%,#2f8f1b), color-stop(51%,#2c7416), color-stop(100%,#2d7517)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(-45deg,  #3aa420 0%,#2f8f1b 50%,#2c7416 51%,#2d7517 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(-45deg,  #3aa420 0%,#2f8f1b 50%,#2c7416 51%,#2d7517 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(-45deg,  #3aa420 0%,#2f8f1b 50%,#2c7416 51%,#2d7517 100%); /* IE10+ */
+background: linear-gradient(135deg,  #3aa420 0%,#2f8f1b 50%,#2c7416 51%,#2d7517 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3aa420', endColorstr='#2d7517',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+text-shadow: 1px 1px 1px black;
+border: solid #000 1px;
+color:white;
+}
+td.quarter4 {
+background: #c42a00; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #c42a00 0%, #aa2b00 50%, #8a1900 51%, #8c1a00 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#c42a00), color-stop(50%,#aa2b00), color-stop(51%,#8a1900), color-stop(100%,#8c1a00)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(-45deg,  #c42a00 0%,#aa2b00 50%,#8a1900 51%,#8c1a00 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(-45deg,  #c42a00 0%,#aa2b00 50%,#8a1900 51%,#8c1a00 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(-45deg,  #c42a00 0%,#aa2b00 50%,#8a1900 51%,#8c1a00 100%); /* IE10+ */
+background: linear-gradient(135deg,  #c42a00 0%,#aa2b00 50%,#8a1900 51%,#8c1a00 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c42a00', endColorstr='#8c1a00',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+text-shadow: 1px 1px 1px black;
+border: solid #000 1px;
+color:white;
+}
+
+td.D {border-right:solid windowtext 1px;}
+
+td.G {border-left:solid windowtext 1px;}
+
+td.HD {border-top:solid windowtext 1px;
+        border-right:solid windowtext 1px;}
+
+td.HG {border-top:solid windowtext 1px;
+        border-left:solid windowtext 1px;}
+
+td.BD {border-bottom:solid windowtext 1px;
+       border-right:solid windowtext 1px;}
+
+td.BG {border-bottom:solid windowtext 1px;
+       border-left:solid windowtext 1px;}
+
+td.GBD {border-left:solid windowtext 1px;
+        border-bottom:solid windowtext 1px;
+        border-right:solid windowtext 1px}
+
+td.HBD {border-top:solid windowtext 1px;
+        border-bottom:solid windowtext 1px;
+        border-right:solid windowtext 1px;}
+
+td.HGB {border-top:solid windowtext 1px;
+        border-bottom:solid windowtext 1px;
+        border-left:solid windowtext 1px;}
+
+td.HGBD {border:solid windowtext 1px;}
