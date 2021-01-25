@@ -155,7 +155,7 @@ class Details extends CI_Controller {
 
 
 			if (strlen($club) > 2) {
-				$updclub = "club='$club',";
+				$updclub = "club='$club'";
 			} else {
 				$updclub = "";
 			}
@@ -163,10 +163,7 @@ class Details extends CI_Controller {
 			$upout .= "Updating Name: $name | DOB: $dob | Gender: $gender | Expires: $memberexp | Club: $club ";
 			$upquery = "INSERT INTO fencer (name, gender, dateofbirth, club, actfamember)
 											   VALUES (\"$name\", '$gender', '$dob', '$club', '$memberexp')
-												 ON DUPLICATE KEY UPDATE actfamember='$memberexp',
-												 												 gender='$gender',
-																								 $updclub
-																								 dateofbirth='$dob';";
+												 ON DUPLICATE KEY UPDATE actfamember='$memberexp', $updclub;";
 			$query = $this->db->query($upquery);
 			if ($query) {
 				$upout .= "-> <b>Success</b>";

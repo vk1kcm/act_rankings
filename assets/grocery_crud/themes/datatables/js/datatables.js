@@ -13,6 +13,16 @@ function supports_html5_storage()
 	}
 }
 
+function success_message(message) {
+	$('#list-report-success').html(message);
+    $('#list-report-success').slideDown();
+}
+
+function error_message(message) {
+    $('#list-report-error').html(message);
+    $('#list-report-error').slideDown();
+}
+
 var use_storage = supports_html5_storage();
 
 var aButtons = [];
@@ -172,13 +182,16 @@ function loadDataTable(this_datatables) {
 		"bDestory": true,
 		"bRetrieve": true,
 		"fnDrawCallback": function() {
-			$('.image-thumbnail').fancybox({
-				'transitionIn'	:	'elastic',
-				'transitionOut'	:	'elastic',
-				'speedIn'		:	600,
-				'speedOut'		:	200,
-				'overlayShow'	:	false
-			});
+            //If there is no thumbnail this means that the fancybox library doesn't exist
+            if ($('.image-thumbnail').length > 0) {
+                $('.image-thumbnail').fancybox({
+                    'transitionIn': 'elastic',
+                    'transitionOut': 'elastic',
+                    'speedIn': 600,
+                    'speedOut': 200,
+                    'overlayShow': false
+                });
+            }
 			add_edit_button_listener();
             $('.DTTT_button_text').attr('href', export_url);
 		},
@@ -207,8 +220,6 @@ function delete_row(delete_url , row_id)
 			{
 				if(data.success)
 				{
-					success_message(data.success_message);
-
 					chosen_table = datatables_get_chosen_table($('tr#row-'+row_id).closest('.groceryCrudTable'));
 
 					$('tr#row-'+row_id).addClass('row_selected');

@@ -1,7 +1,5 @@
-act_rankings
+Grocery CRUD
 =============
-This is the codebase for managing the annual fencer rankings for the ACT Fencing Association.
+Grocery CRUD is a PHP and Codeigniter Framework library that creates a full functional CRUD system without the need to customise JavaScript or CSS.
 
-It's not particularly pretty, and lots of the policy settings are hardcoded, although a the points details have made their way into assets/points_table.php.
-
-It uses the CodeIgnighter framework and the GroceryCRUD plugin.
+For more information, visit http://www.grocerycrud.com
