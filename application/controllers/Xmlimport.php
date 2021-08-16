@@ -74,6 +74,12 @@ class Xmlimport extends CI_Controller {
 			"L" => "Club"
 		];
 
+		$compsex = [
+			"M" => "Mens",
+			"F" => "Womens",
+			"X"	=> "Mixed"
+		];
+
 		// Load in the ACT fencers
 		$query = $this->db->query('SELECT lower(name) as name, lower(name_alt) as name_alt, idfencer FROM fencer');
 		$qresult = $query->result_array();
@@ -96,12 +102,25 @@ class Xmlimport extends CI_Controller {
 		$xCompCategory = (STRING)$engardexml['Categorie'];
 		$xCompWeapon = (STRING)$engardexml['Arme'];
 		$xCompDateTmp = date_parse((STRING)$engardexml['Date']);
+		$xCompSex = (STRING)$engardexml['Sexe'];
 		$xCompDate = $xCompDateTmp['year'] . "-" . $xCompDateTmp['month'] . "-" . $xCompDateTmp['day'];
 		if (isset($engardexml['Domaine'])) {
 			# $upout .= "<p>Domaine key found</p>";
 			$xCompLevel = (STRING)$engardexml['Domaine'];
 		} else {
 			$xCompLevel = (STRING)$engardexml['Niveau'];
+		}
+
+//		$upout .= var_dump($_POST);
+
+		if (array_key_exists('incompletetitle', $_POST)) {
+			$xCompName .= " - " . $compcategory[$xCompCategory] . " " . $compsex[$xCompSex] . " " . $compweapon[$xCompWeapon];
+		}
+
+		if (array_key_exists('actfacomp', $_POST)) {
+			$xactfacomp = 1;
+		} else {
+			$xactfacomp = 0;
 		}
 
 		$upout .= "<h1>$xCompName</h1>\n<h2>Category $compcategory[$xCompCategory], Weapon $compweapon[$xCompWeapon], Date $xCompDate, Domain $compdomain[$xCompLevel] </h2>\n";
@@ -164,7 +183,8 @@ class Xmlimport extends CI_Controller {
 				'weapon' => $compweapon[$xCompWeapon],
 				'category' => $compcategory[$xCompCategory],
 				'level' => $compdomain[$xCompLevel],
-				'date' => $xCompDate
+				'date' => $xCompDate,
+				'isact' => $xactfacomp
 			];
 			$compupdate = $this->db->insert_string('comp', $insertdata);
 			$upout .= "comp update -> $compupdate<br />\n";

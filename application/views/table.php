@@ -75,7 +75,10 @@ a:hover
   <?php if (strlen(strstr(uri_string(),'result')) > 0): ?>
     <br />
     <?php echo form_open_multipart('xmlimport/uploadresult'); ?>
-    Upload Engarde XML results file: <?php echo form_upload('engardexml'); ?>
+    <strong>Upload Engarde XML results file</strong> <br />
+    <?php echo form_upload('engardexml'); ?> <br />
+    Add Details to Title: <?php echo form_checkbox('incompletetitle', 'Yes', TRUE); ?> <br />
+    Is ACT Comp: <?php echo form_checkbox('actfacomp', 'Yes'); ?> <br />
     <?php echo form_submit('upload', 'Upload'); ?>
     <?php echo form_close(); ?>
 
