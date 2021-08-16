@@ -66,6 +66,9 @@ a:hover
     Upload CSV ACTFA membership file: <?php echo form_upload('actfa_memberlist'); ?>
     <?php echo form_submit('upload', 'Upload'); ?>
     <?php echo form_close(); ?>
+    <?php echo form_open('details/updatejsonfencer'); ?>
+    Update ACTFA membership from portal: <?php echo form_submit('getmembers', 'Get Membership Data'); ?>
+    <?php echo form_close(); ?>
 
 
   <?php endif; ?>

@@ -177,7 +177,72 @@ class Details extends CI_Controller {
 
 		$upout .= "<p>$updatedCount members updated</p>\n";
 		$output['output'] = $upout;
-//		$output['output'] = "<pre>\n" . var_dump($updatedMembers) . "</pre>\n";
+
+	
+		//		$output['output'] = "<pre>\n" . var_dump($updatedMembers) . "</pre>\n";
+		$this->load->view('viewrankings.php', $output);
+
+	}
+
+
+	public function updatejsonfencer()
+	{
+		$updatedMembers = json_decode(file_get_contents("https://portal.fencing.org.au/exports/actfa_members.php"), true);
+
+		$memberList = array();
+		$updatedCount = 0;
+		date_default_timezone_set('Australia/Canberra');
+		$upout = "";
+
+//		$upout .= "<pre>" . var_dump($updatedMembers) . "</pre><br />\n";
+
+		foreach ($updatedMembers as $key => $value) {
+			$name = trim($value["FirstName"]) . " " . trim($value["LastName"]);
+			$dobtemp = new DateTime($value["DOB"]);
+			$dob = $dobtemp->format('Y-m-d');
+			$gender = ucfirst(substr($value["Gender"], 0, 1));
+			$mbrtemp = new DateTime($value["expiry"]);
+			$memberexp = $mbrtemp->format('Y-m-d');
+			$club = $value["club"];
+			if ($club == "EMFC") {
+				$club = "Engarde";
+			} elseif ($club == "DFC") {
+				$club = "Duel";	
+			} elseif ($club == "ACTFA") {
+				$club = "Non Club Member";
+			} elseif ($club == "MFC") {
+				$club = "Maison Escrime";
+			}
+
+			$club = str_replace("Veterans(Archery Centre) (ACT)", "Masters", $club);
+			$club = str_replace("(ACT)", "", $club);
+
+
+			if (strlen($club) > 2) {
+				$updclub = "club='$club'";
+			} else {
+				$updclub = "";
+			}
+
+			$upout .= "Updating Name: $name | DOB: $dob | Gender: $gender | Expires: $memberexp | Club: $club ";
+			$upquery = "INSERT INTO fencer (name, gender, dateofbirth, club, actfamember)
+											   VALUES (\"$name\", '$gender', '$dob', '$club', '$memberexp')
+												 ON DUPLICATE KEY UPDATE actfamember='$memberexp', $updclub;";
+			$query = $this->db->query($upquery);
+//			$query = true;
+			if ($query) {
+				$upout .= "-> <b>Success</b>";
+				$updatedCount++;
+			} else {
+				$upout .= "-> <b>FAIL</b>";
+			}
+			$upout .= "<br />\n";
+
+		}
+
+		$upout .= "<p>$updatedCount members updated</p>\n";
+		$output['output'] = $upout;
+
 		$this->load->view('viewrankings.php', $output);
 
 	}
