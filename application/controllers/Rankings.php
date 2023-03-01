@@ -181,6 +181,8 @@ class Rankings extends CI_Controller {
 		// This basically the number of competitors for each group grouped by club.
 		$participateCadet = array();
 		$participateJunior = array();
+		$participateCadetArray = array();
+
 		foreach ($colRankArray as $row)
 		{
 			if ((substr_count($row[2], "U20") > 0)
@@ -225,6 +227,7 @@ class Rankings extends CI_Controller {
 		$competeJunior = array();
 		$competeCadetUsed = array();
 		$competeJuniorUsed = array();
+		$competeCadetArray = array();
 
 		foreach ($colRankArray as $row)
 		{
@@ -619,7 +622,8 @@ class Rankings extends CI_Controller {
 
 		if (!isset($results))
 		{
-			$results[] = ["", "", "", 0];
+//			$results[] = ["", "", "", 0];
+			$results = array();
 		}
 
 		if ($collect == "Y")
@@ -678,22 +682,27 @@ class Rankings extends CI_Controller {
 				$ptable .= "<th class=\"HBD\" align=\"left\">National</th>";
 				$ptable .= "<th class=\"HBD\" align=\"left\">International</th>";
 				$ptable .= "</tr>\n";
-				foreach ($results as $key => $gtab)
-				{
-					//			 echo "key: $key<br />\n";
-					$ptable .= "<tr align=\"left\">";
-					$ptable .= "<td align=\"center\" bgcolor=\"#ffff33\">" . $gtab[0] . "</td>";
-					$ptable .= "<td align=\"left\">" . $gtab[1] . "</td>";
-					$ptable .= "<td align=\"left\">". $gtab[2] . "</td>";
-					$ptable .= "<td align=\"center\" bgcolor=\"#ffff33\">". $gtab[3] . "</td>";
-					$ptable .= "<td align=\"center\" bgcolor=\"#82fa58\">". $resultlevels[$gtab[1]]['Club'] . "</td>";
-					$ptable .= "<td align=\"center\" bgcolor=\"#fe9a2e\">". $resultlevels[$gtab[1]]['State'] . "</td>";
-					$ptable .= "<td align=\"center\" bgcolor=\"#e55e6c\">". $resultlevels[$gtab[1]]['National'] . "</td>";
-					$ptable .= "<td align=\"center\" bgcolor=\"#2196f3\">". $resultlevels[$gtab[1]]['International'] . "</td>";
-					$ptable .= "</tr>\n";
+				
+				if (count($results) > 0) {
 
-					$xmloutput[] = [$gtab[1], $gender,  $gtab[2], $gtab[3]];
+					foreach ($results as $key => $gtab)
+					{
+						//			 echo "key: $key<br />\n";
+						$ptable .= "<tr align=\"left\">";
+						$ptable .= "<td align=\"center\" bgcolor=\"#ffff33\">" . $gtab[0] . "</td>";
+						$ptable .= "<td align=\"left\">" . $gtab[1] . "</td>";
+						$ptable .= "<td align=\"left\">". $gtab[2] . "</td>";
+						$ptable .= "<td align=\"center\" bgcolor=\"#ffff33\">". $gtab[3] . "</td>";
+						$ptable .= "<td align=\"center\" bgcolor=\"#82fa58\">". $resultlevels[$gtab[1]]['Club'] . "</td>";
+						$ptable .= "<td align=\"center\" bgcolor=\"#fe9a2e\">". $resultlevels[$gtab[1]]['State'] . "</td>";
+						$ptable .= "<td align=\"center\" bgcolor=\"#e55e6c\">". $resultlevels[$gtab[1]]['National'] . "</td>";
+						$ptable .= "<td align=\"center\" bgcolor=\"#2196f3\">". $resultlevels[$gtab[1]]['International'] . "</td>";
+						$ptable .= "</tr>\n";
+
+						$xmloutput[] = [$gtab[1], $gender,  $gtab[2], $gtab[3]];
+					}
 				}
+
 				$ptable .= "</table>\n";
 
 				$ptable .= "<p>as at $lastdate</p>\n";
@@ -776,19 +785,27 @@ class Rankings extends CI_Controller {
 				{
 					$count++;
 					$name = explode(" ", $key, 2);
-					$xmlstring = '     <Tireur ID="%s" Nom="%s" Prenom="%s" DateNaissance="" Sexe="%s" Nation="AUS" Ligue="ACT" Club="%s" points="%s"/>';
-					$xmlout .= sprintf($xmlstring, $count, trim($name[1]), trim($name[0]), $line[0], $line[1], $line[2]);
-					$xmlout .= "\n";
+					//$xmlstring = '     <Tireur ID="%s" Nom="%s" Prenom="%s" DateNaissance="" Sexe="%s" Nation="AUS" Ligue="ACT" Club="%s" points="%s"/>';
+					//$xmlout .= sprintf($xmlstring, $count, trim($name[1]), trim($name[0]), $line[0], $line[1], $line[2]);
+					//$xmlout .= "\n";
+					$csvstring = '%s,%s,%s,%s,%s,%s';
+					$csvout .= sprintf($xmlstring, $line[2], trim($name[0]), trim($name[1]),
+					$count , trim($name[1]), trim($name[0]), $line[0], $line[1], $line[2]);
+					$csvout .= "\n";
+
 				}
 
-				$output['category'] = $thiscategory;
-				$output['weapon'] = $weapon;
-				$output['date'] = $lastdate;
-				$output['xmlout'] = $xmlout;
+				//$output['category'] = $thiscategory;
+				//$output['weapon'] = $weapon;
+				//$output['date'] = $lastdate;
+				//$output['xmlout'] = $xmlout;
+				$output['csvout'] = $csvout;
 				//			$this->output->set_header('Content-Type: application/xml');
 				$this->output->set_header('Content-Type: text/plain');
-				$this->output->set_header('Content-Disposition: filename="' . $thiscategory . $weapon . $lastdate . '.xml"');
-				$this->load->view('xmlout.php', $output);
+				// $this->output->set_header('Content-Disposition: filename="' . $thiscategory . $weapon . $lastdate . '.xml"');
+				$this->output->set_header('Content-Disposition: filename="' . $thiscategory . $weapon . $lastdate . '.csv"');
+				// $this->load->view('xmlout.php', $output);
+				$this->load->view('csvout.php', $output);
 			}
 		}
 

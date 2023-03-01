@@ -212,6 +212,8 @@ class Details extends CI_Controller {
 				$club = "Non Club Member";
 			} elseif ($club == "MFC") {
 				$club = "Maison Escrime";
+			} elseif (strlen($club) < 1) {
+				$club = "Non Club Member";
 			}
 
 			$club = str_replace("Veterans(Archery Centre) (ACT)", "Masters", $club);

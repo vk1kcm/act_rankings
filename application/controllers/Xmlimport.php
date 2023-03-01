@@ -63,7 +63,7 @@ class Xmlimport extends CI_Controller {
 			"M11" => "U11",		// Pupille
 			"U9" => "U9",			// Poussin
 			"M9" => "U9",			// Poussin
-			"" => "None"			// Default
+			"" => "Novice"			// Default
 
 		];
 		$compdomain = [
@@ -139,16 +139,16 @@ class Xmlimport extends CI_Controller {
 		foreach ($engardexml->Tireurs->Tireur as $tireur)
 		{
 			$tID = $tireur['ID'];
-			$tSurname = $tireur['Nom'];
+			$tSurname = ucwords(strtolower($tireur['Nom']));
 			$tFirstname = $tireur['Prenom'];
 			$tBirthdate = $tireur['DateNaissance'];
-			$tNation = $tireur['Nation'];
+			$tNation = $tireur['Club'] . "/" . $tireur['Nation'];
 			$tPlace = $tireur['Classement'];
 
-			$tSurname = str_replace("(40+)", "", $tSurname);
-			$tSurname = str_replace("(50+)", "", $tSurname);
-			$tSurname = str_replace("(60+)", "", $tSurname);
-			$tSurname = str_replace("(70+)", "", $tSurname);
+			$tSurname = str_replace(" (40+)", "", $tSurname);
+			$tSurname = str_replace(" (50+)", "", $tSurname);
+			$tSurname = str_replace(" (60+)", "", $tSurname);
+			$tSurname = str_replace(" (70+)", "", $tSurname);
 
 			$compareName = strtolower($tFirstname . " " . $tSurname);
 			if (array_key_exists($compareName, $actfencers)) {

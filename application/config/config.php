@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 if (array_key_exists("HTTP_X_FORWARDED_FOR", $_SERVER)) {
 	$config['base_url'] = 'https://www.stagecraft.cx/act_rankings/';
 } else {
-	$config['base_url'] = 'http://drclaw.stagecraft.cx/~carl/act_rankings/';
+	$config['base_url'] = 'http://web.stagecraft.cx/act_rankings/';
 }
 
 /*
