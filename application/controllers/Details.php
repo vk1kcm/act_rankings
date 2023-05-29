@@ -135,7 +135,7 @@ class Details extends CI_Controller {
 			$gender = ucfirst(substr($value[8], 0, 1));
 			$mbrtemp = new DateTime($value[15]);
 			$memberexp = $mbrtemp->format('Y-m-d');
-			if (strlen($value[12]) > 2) {
+/* 			if (strlen($value[12]) > 2) {
 				$club = $value[12];
 			} else {
 				$club = $value[13];
@@ -159,11 +159,17 @@ class Details extends CI_Controller {
 			} else {
 				$updclub = "";
 			}
-
+ 
 			$upout .= "Updating Name: $name | DOB: $dob | Gender: $gender | Expires: $memberexp | Club: $club ";
 			$upquery = "INSERT INTO fencer (name, gender, dateofbirth, club, actfamember)
 											   VALUES (\"$name\", '$gender', '$dob', '$club', '$memberexp')
 												 ON DUPLICATE KEY UPDATE actfamember='$memberexp', $updclub;";
+*/												 			
+			$upout .= "Updating Name: $name | DOB: $dob | Gender: $gender | Expires: $memberexp ";
+			$upquery = "INSERT INTO fencer (name, gender, dateofbirth, actfamember)
+											   VALUES (\"$name\", '$gender', '$dob', '$memberexp')
+												 ON DUPLICATE KEY UPDATE actfamember='$memberexp';";
+
 			$query = $this->db->query($upquery);
 			if ($query) {
 				$upout .= "-> <b>Success</b>";
@@ -203,7 +209,7 @@ class Details extends CI_Controller {
 			$gender = ucfirst(substr($value["Gender"], 0, 1));
 			$mbrtemp = new DateTime($value["expiry"]);
 			$memberexp = $mbrtemp->format('Y-m-d');
-			$club = $value["club"];
+/* 			$club = $value["club"];
 			if ($club == "EMFC") {
 				$club = "Engarde";
 			} elseif ($club == "DFC") {
@@ -226,10 +232,16 @@ class Details extends CI_Controller {
 				$updclub = "";
 			}
 
-			$upout .= "Updating Name: $name | DOB: $dob | Gender: $gender | Expires: $memberexp | Club: $club ";
+ 			$upout .= "Updating Name: $name | DOB: $dob | Gender: $gender | Expires: $memberexp | Club: $club ";
 			$upquery = "INSERT INTO fencer (name, gender, dateofbirth, club, actfamember)
 											   VALUES (\"$name\", '$gender', '$dob', '$club', '$memberexp')
 												 ON DUPLICATE KEY UPDATE actfamember='$memberexp', $updclub;";
+*/
+			$upout .= "Updating Name: $name | DOB: $dob | Gender: $gender | Expires: $memberexp ";
+			$upquery = "INSERT INTO fencer (name, gender, dateofbirth, actfamember)
+								   VALUES (\"$name\", '$gender', '$dob', '$memberexp')
+									 ON DUPLICATE KEY UPDATE actfamember='$memberexp';";
+
 			$query = $this->db->query($upquery);
 //			$query = true;
 			if ($query) {

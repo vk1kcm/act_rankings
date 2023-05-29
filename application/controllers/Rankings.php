@@ -773,6 +773,7 @@ class Rankings extends CI_Controller {
 				}
 
 				$xmlout = "";
+				$csvout = "";
 				foreach ($results as $key => $gtab)
 				{
 					$thisfencer = $allfencers[$gtab[1]];
@@ -788,10 +789,12 @@ class Rankings extends CI_Controller {
 					//$xmlstring = '     <Tireur ID="%s" Nom="%s" Prenom="%s" DateNaissance="" Sexe="%s" Nation="AUS" Ligue="ACT" Club="%s" points="%s"/>';
 					//$xmlout .= sprintf($xmlstring, $count, trim($name[1]), trim($name[0]), $line[0], $line[1], $line[2]);
 					//$xmlout .= "\n";
-					$csvstring = '%s,%s,%s,%s,%s,%s';
-					$csvout .= sprintf($xmlstring, $line[2], trim($name[0]), trim($name[1]),
-					$count , trim($name[1]), trim($name[0]), $line[0], $line[1], $line[2]);
-					$csvout .= "\n";
+					if ($line[2] > 0) {
+						$csvstring = '%s,%s,%s,%s,%s,%s';
+						$csvout .= sprintf($csvstring, $line[2], trim($name[0]), trim($name[1]),
+							$count , trim($name[1]), trim($name[0]), $line[0], $line[1], $line[2]);
+						$csvout .= "\n";
+				}
 
 				}
 
